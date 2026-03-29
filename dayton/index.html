@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,18 +8,23 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;1,600&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="../styles.css">
     <style>
         /* Mobile-First Condensed Spacing */
         body {
-            background: #0B1118; /* Solid background to match theme */
+            background: #0B1118;
+            /* Solid background to match theme */
             padding-bottom: 40px;
         }
+
         .dayton-header {
             text-align: center;
             padding: 24px 16px 16px;
         }
+
         .dayton-header h1 {
             font-size: 2.25rem;
             margin-bottom: 0;
@@ -27,11 +33,13 @@
             background-clip: text;
             -webkit-text-fill-color: transparent;
         }
+
         .dayton-container {
             max-width: 600px;
             margin: 0 auto;
             padding: 0 16px;
         }
+
         .hub-card {
             background: var(--surface-color);
             border: 1px solid var(--surface-border);
@@ -40,6 +48,7 @@
             margin-bottom: 16px;
             backdrop-filter: blur(10px);
         }
+
         .hub-card h2 {
             font-size: 1.35rem;
             margin-bottom: 12px;
@@ -47,7 +56,7 @@
             border-bottom: 1px solid var(--surface-border);
             padding-bottom: 8px;
         }
-        
+
         /* Timeline */
         .timeline {
             display: flex;
@@ -55,11 +64,13 @@
             gap: 12px;
             margin-top: 4px;
         }
+
         .timeline-item {
             display: flex;
             gap: 12px;
             align-items: flex-start;
         }
+
         .timeline-marker {
             background: rgba(92, 122, 150, 0.2);
             color: #A6BFD6;
@@ -73,12 +84,14 @@
             margin-top: 2px;
             letter-spacing: 0.5px;
         }
+
         .timeline-content {
             font-size: 0.95rem;
             color: var(--text-secondary);
             flex: 1;
             line-height: 1.4;
         }
+
         .timeline-content strong {
             color: white;
         }
@@ -87,17 +100,20 @@
         .form-group {
             margin-bottom: 16px;
         }
+
         .form-row {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 12px;
         }
+
         @media (max-width: 480px) {
             .form-row {
                 grid-template-columns: 1fr;
                 gap: 16px;
             }
         }
+
         label {
             display: block;
             margin-bottom: 6px;
@@ -105,12 +121,14 @@
             font-weight: 500;
             font-size: 0.95rem;
         }
+
         .subtext {
             font-size: 0.85rem;
             color: var(--text-secondary);
             margin-bottom: 12px;
             line-height: 1.4;
         }
+
         input[type="text"],
         input[type="tel"],
         textarea {
@@ -124,6 +142,7 @@
             font-size: 1rem;
             transition: var(--transition);
         }
+
         input[type="text"]:focus,
         input[type="tel"]:focus,
         textarea:focus {
@@ -131,17 +150,19 @@
             border-color: var(--accent-start);
             background: rgba(0, 0, 0, 0.4);
         }
+
         textarea {
             resize: vertical;
             min-height: 70px;
         }
-        
+
         .radio-group {
             display: flex;
             flex-direction: column;
             gap: 10px;
             margin-top: 6px;
         }
+
         .radio-label {
             display: flex;
             align-items: center;
@@ -151,6 +172,7 @@
             color: var(--text-secondary);
             font-size: 0.95rem;
         }
+
         .radio-label input[type="radio"],
         .checkbox-label input[type="checkbox"] {
             accent-color: var(--accent-start);
@@ -158,6 +180,7 @@
             height: 16px;
             margin: 0;
         }
+
         .checkbox-label {
             display: flex;
             align-items: center;
@@ -176,14 +199,22 @@
             border-radius: var(--radius-md);
             border: 1px solid rgba(255, 255, 255, 0.05);
         }
+
         .conditional-field.active {
             display: block;
             animation: fadeIn 0.3s ease;
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-5px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(-5px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .submit-btn {
@@ -193,39 +224,44 @@
             font-size: 1.15rem;
             padding: 14px 24px;
         }
-        
+
         .footer-note {
             text-align: center;
             color: var(--text-secondary);
             font-size: 0.85rem;
             margin-top: 12px;
         }
-        
+
         /* Typography overrides for tight spaces */
         .section-header-compact {
-            color: white; 
-            font-size: 1.15rem; 
-            font-family: var(--font-heading); 
+            color: white;
+            font-size: 1.15rem;
+            font-family: var(--font-heading);
             margin-bottom: 6px;
             font-weight: 600;
         }
     </style>
 </head>
+
 <body>
     <div class="dayton-header">
         <h1>Dayton Delivery Hub</h1>
     </div>
 
     <div class="dayton-container">
-        
+
         <!-- Section 1: Purchase -->
         <div class="hub-card">
             <h2>Step 1: Order Your Copy</h2>
-            <p style="color: var(--text-secondary); margin-bottom: 16px; font-size: 0.95rem;">Secure your copy of Internal Leadership before filling out the delivery info.</p>
-            <a href="https://buy.stripe.com/28E4gB50U5sB8J47xS6Ri01" class="btn-primary submit-btn" target="_blank" rel="noopener noreferrer">
+            <p style="color: var(--text-secondary); margin-bottom: 16px; font-size: 0.95rem;">Secure your copy of
+                Internal Leadership before filling out the delivery info.</p>
+            <a href="https://buy.stripe.com/28E4gB50U5sB8J47xS6Ri01" class="btn-primary submit-btn" target="_blank"
+                rel="noopener noreferrer">
                 Buy Now
                 <svg class="arrow-icon" viewBox="0 0 20 20" fill="currentColor">
-                    <path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                    <path fill-rule="evenodd"
+                        d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
+                        clip-rule="evenodd" />
                 </svg>
             </a>
         </div>
@@ -252,7 +288,11 @@
         <!-- Section 3: Delivery Form -->
         <div class="hub-card">
             <h2>Step 2: Dayton Pickup Info</h2>
-            <form id="daytonForm">
+            <form id="daytonForm" name="dayton-deliveries" method="POST" data-netlify="true" action="/success">
+                <input type="hidden" name="form-name" value="dayton-deliveries" />
+                <p class="hidden" style="display:none;">
+                    <label>Don’t fill this out if you're human: <input name="bot-field" /></label>
+                </p>
                 <div class="form-row">
                     <div class="form-group">
                         <label for="fullName">Full Name</label>
@@ -290,7 +330,9 @@
                 <div style="margin: 24px 0 16px;">
                     <h3 class="section-header-compact">Housing Logistics</h3>
                     <div class="subtext">
-                        There may be some information in this that you are unsure of right now. We have a solution: leave out what you don't know for now. You will receive an edit link in your confirmation email to update this as things get closer.
+                        There may be some information in this that you are unsure of right now. We have a solution:
+                        leave out what you don't know for now. You will receive an edit link in your confirmation email
+                        to update this as things get closer.
                     </div>
                 </div>
 
@@ -363,7 +405,7 @@
 
             function updateHousingLogic() {
                 const selectedHousing = document.querySelector('input[name="housingType"]:checked');
-                
+
                 if (!selectedHousing) return;
 
                 if (selectedHousing.value === 'unknown') {
@@ -371,7 +413,7 @@
                     housingAddressArea.required = false;
                 } else {
                     addressFieldGroup.classList.add('active');
-                    
+
                     if (noAddressCheckbox.checked) {
                         housingAddressArea.style.display = 'none';
                         addressLabel.style.display = 'none';
@@ -390,25 +432,8 @@
 
             noAddressCheckbox.addEventListener('change', updateHousingLogic);
 
-            document.getElementById('daytonForm').addEventListener('submit', (e) => {
-                e.preventDefault();
-                // Simple visual feedback for form submission
-                const btn = e.target.querySelector('button[type="submit"]');
-                const origText = btn.innerHTML;
-                btn.innerHTML = 'Submitted Successfully!';
-                btn.style.background = '#10b981';
-                btn.style.boxShadow = '0 10px 25px -5px rgba(16, 185, 129, 0.4)';
-                
-                setTimeout(() => {
-                    btn.innerHTML = origText;
-                    btn.style.background = '';
-                    btn.style.boxShadow = '';
-                    e.target.reset();
-                    updateHousingLogic();
-                    ensembleFields.classList.remove('active');
-                }, 3000);
-            });
         });
     </script>
 </body>
+
 </html>
