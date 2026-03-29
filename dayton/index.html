@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dayton Delivery Hub | Reed Nocera</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        /* Mobile-First Condensed Spacing */
+        body {
+            background: #0B1118; /* Solid background to match theme */
+            padding-bottom: 40px;
+        }
+        .dayton-header {
+            text-align: center;
+            padding: 24px 16px 16px;
+        }
+        .dayton-header h1 {
+            font-size: 2.25rem;
+            margin-bottom: 0;
+            background: linear-gradient(to right, #ffffff, #A6BFD6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .dayton-container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 0 16px;
+        }
+        .hub-card {
+            background: var(--surface-color);
+            border: 1px solid var(--surface-border);
+            border-radius: var(--radius-lg);
+            padding: 20px 16px;
+            margin-bottom: 16px;
+            backdrop-filter: blur(10px);
+        }
+        .hub-card h2 {
+            font-size: 1.35rem;
+            margin-bottom: 12px;
+            color: white;
+            border-bottom: 1px solid var(--surface-border);
+            padding-bottom: 8px;
+        }
+        
+        /* Timeline */
+        .timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 4px;
+        }
+        .timeline-item {
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+        }
+        .timeline-marker {
+            background: rgba(92, 122, 150, 0.2);
+            color: #A6BFD6;
+            font-weight: 700;
+            padding: 2px 10px;
+            border-radius: 100px;
+            font-size: 0.75rem;
+            border: 1px solid rgba(166, 191, 214, 0.3);
+            min-width: 70px;
+            text-align: center;
+            margin-top: 2px;
+            letter-spacing: 0.5px;
+        }
+        .timeline-content {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            flex: 1;
+            line-height: 1.4;
+        }
+        .timeline-content strong {
+            color: white;
+        }
+
+        /* Form Elements */
+        .form-group {
+            margin-bottom: 16px;
+        }
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+        @media (max-width: 480px) {
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+        }
+        label {
+            display: block;
+            margin-bottom: 6px;
+            color: var(--text-primary);
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+        .subtext {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+            line-height: 1.4;
+        }
+        input[type="text"],
+        input[type="tel"],
+        textarea {
+            width: 100%;
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid var(--surface-border);
+            color: white;
+            padding: 10px 14px;
+            border-radius: var(--radius-sm);
+            font-family: inherit;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+        input[type="text"]:focus,
+        input[type="tel"]:focus,
+        textarea:focus {
+            outline: none;
+            border-color: var(--accent-start);
+            background: rgba(0, 0, 0, 0.4);
+        }
+        textarea {
+            resize: vertical;
+            min-height: 70px;
+        }
+        
+        .radio-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 6px;
+        }
+        .radio-label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            font-weight: 400;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+        .radio-label input[type="radio"],
+        .checkbox-label input[type="checkbox"] {
+            accent-color: var(--accent-start);
+            width: 16px;
+            height: 16px;
+            margin: 0;
+        }
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .conditional-field {
+            display: none;
+            margin-top: 12px;
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: var(--radius-md);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .conditional-field.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .submit-btn {
+            width: 100%;
+            border: none;
+            cursor: pointer;
+            font-size: 1.15rem;
+            padding: 14px 24px;
+        }
+        
+        .footer-note {
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            margin-top: 12px;
+        }
+        
+        /* Typography overrides for tight spaces */
+        .section-header-compact {
+            color: white; 
+            font-size: 1.15rem; 
+            font-family: var(--font-heading); 
+            margin-bottom: 6px;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="dayton-header">
+        <h1>Dayton Delivery Hub</h1>
+    </div>
+
+    <div class="dayton-container">
+        
+        <!-- Section 1: Purchase -->
+        <div class="hub-card">
+            <h2>Step 1: Order Your Copy</h2>
+            <p style="color: var(--text-secondary); margin-bottom: 16px; font-size: 0.95rem;">Secure your copy of Internal Leadership before filling out the delivery info.</p>
+            <a href="https://buy.stripe.com/28E4gB50U5sB8J47xS6Ri01" class="btn-primary submit-btn" target="_blank" rel="noopener noreferrer">
+                Buy Now
+                <svg class="arrow-icon" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                </svg>
+            </a>
+        </div>
+
+        <!-- Section 2: Timeline -->
+        <div class="hub-card">
+            <h2>The Timeline</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-marker">NOW</div>
+                    <div class="timeline-content">Purchase your book above.</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-marker">PLAN</div>
+                    <div class="timeline-content">Fill out the delivery form below (before April 16).</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-marker">DAYTON</div>
+                    <div class="timeline-content">We hand-deliver to your bus, hotel, or arena lot.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 3: Delivery Form -->
+        <div class="hub-card">
+            <h2>Step 2: Dayton Pickup Info</h2>
+            <form id="daytonForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="fullName">Full Name</label>
+                        <input type="text" id="fullName" placeholder="As it appears on your order" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" placeholder="(123) 456-7890" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Which describes you?</label>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="role" value="A" required>
+                            Performing Ensemble Member, Staff, or Parent
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="role" value="B">
+                            Fan / Spectator
+                        </label>
+                    </div>
+                </div>
+
+                <div class="conditional-field" id="ensembleFields">
+                    <div class="form-group" style="margin-bottom:0;">
+                        <label for="ensembleName">Ensemble Name</label>
+                        <input type="text" id="ensembleName" placeholder="e.g. Rhythm X" style="margin-bottom: 10px;">
+                        <label for="ensembleClass">Class (e.g. PIW, PSW)</label>
+                        <input type="text" id="ensembleClass" placeholder="e.g. PIW">
+                    </div>
+                </div>
+
+                <div style="margin: 24px 0 16px;">
+                    <h3 class="section-header-compact">Housing Logistics</h3>
+                    <div class="subtext">
+                        There may be some information in this that you are unsure of right now. We have a solution: leave out what you don't know for now. You will receive an edit link in your confirmation email to update this as things get closer.
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="housingType" value="hotel" required>
+                            I am staying at a hotel
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="housingType" value="airbnb">
+                            I am staying at an Airbnb
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="housingType" value="unknown">
+                            Housing Unknown / Not Local
+                        </label>
+                    </div>
+                </div>
+
+                <div class="conditional-field" id="addressFieldGroup">
+                    <div class="form-group" style="margin-bottom: 0;">
+                        <label class="checkbox-label" id="noAddressCheckboxLabel">
+                            <input type="checkbox" id="noAddressYet">
+                            I do not have this yet
+                        </label>
+                        <label for="housingAddress" id="addressLabel">Housing Address</label>
+                        <textarea id="housingAddress" placeholder="Enter full address here..."></textarea>
+                    </div>
+                </div>
+
+                <!-- Section 4: Submission -->
+                <div style="margin-top: 24px;">
+                    <button type="submit" class="btn-primary submit-btn">
+                        Submit My Delivery Info
+                    </button>
+                    <div class="footer-note">Deliveries occur between April 16–19 in the Dayton area only.</div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Logic Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const roleRadios = document.querySelectorAll('input[name="role"]');
+            const ensembleFields = document.getElementById('ensembleFields');
+            const ensembleNameInput = document.getElementById('ensembleName');
+            const ensembleClassInput = document.getElementById('ensembleClass');
+
+            roleRadios.forEach(r => {
+                r.addEventListener('change', (e) => {
+                    if (e.target.value === 'A') {
+                        ensembleFields.classList.add('active');
+                        ensembleNameInput.required = true;
+                        ensembleClassInput.required = true;
+                    } else {
+                        ensembleFields.classList.remove('active');
+                        ensembleNameInput.required = false;
+                        ensembleClassInput.required = false;
+                    }
+                });
+            });
+
+            const housingRadios = document.querySelectorAll('input[name="housingType"]');
+            const addressFieldGroup = document.getElementById('addressFieldGroup');
+            const noAddressCheckbox = document.getElementById('noAddressYet');
+            const housingAddressArea = document.getElementById('housingAddress');
+            const addressLabel = document.getElementById('addressLabel');
+
+            function updateHousingLogic() {
+                const selectedHousing = document.querySelector('input[name="housingType"]:checked');
+                
+                if (!selectedHousing) return;
+
+                if (selectedHousing.value === 'unknown') {
+                    addressFieldGroup.classList.remove('active');
+                    housingAddressArea.required = false;
+                } else {
+                    addressFieldGroup.classList.add('active');
+                    
+                    if (noAddressCheckbox.checked) {
+                        housingAddressArea.style.display = 'none';
+                        addressLabel.style.display = 'none';
+                        housingAddressArea.required = false;
+                    } else {
+                        housingAddressArea.style.display = 'block';
+                        addressLabel.style.display = 'block';
+                        housingAddressArea.required = true;
+                    }
+                }
+            }
+
+            housingRadios.forEach(r => {
+                r.addEventListener('change', updateHousingLogic);
+            });
+
+            noAddressCheckbox.addEventListener('change', updateHousingLogic);
+
+            document.getElementById('daytonForm').addEventListener('submit', (e) => {
+                e.preventDefault();
+                // Simple visual feedback for form submission
+                const btn = e.target.querySelector('button[type="submit"]');
+                const origText = btn.innerHTML;
+                btn.innerHTML = 'Submitted Successfully!';
+                btn.style.background = '#10b981';
+                btn.style.boxShadow = '0 10px 25px -5px rgba(16, 185, 129, 0.4)';
+                
+                setTimeout(() => {
+                    btn.innerHTML = origText;
+                    btn.style.background = '';
+                    btn.style.boxShadow = '';
+                    e.target.reset();
+                    updateHousingLogic();
+                    ensembleFields.classList.remove('active');
+                }, 3000);
+            });
+        });
+    </script>
+</body>
+</html>
