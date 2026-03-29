@@ -288,7 +288,7 @@
         <!-- Section 3: Delivery Form -->
         <div class="hub-card">
             <h2>Step 2: Dayton Pickup Info</h2>
-            <form id="daytonForm" name="dayton-deliveries" method="POST" data-netlify="true" action="/success">
+            <form id="daytonForm" name="dayton-deliveries" method="POST" data-netlify="true" netlify data-netlify-honeypot="bot-field" action="/success">
                 <input type="hidden" name="form-name" value="dayton-deliveries" />
                 <p class="hidden" style="display:none;">
                     <label>Don’t fill this out if you're human: <input name="bot-field" /></label>
@@ -296,11 +296,11 @@
                 <div class="form-row">
                     <div class="form-group">
                         <label for="fullName">Full Name</label>
-                        <input type="text" id="fullName" placeholder="As it appears on your order" required>
+                        <input type="text" id="fullName" name="full-name" placeholder="As it appears on your order" required>
                     </div>
                     <div class="form-group">
                         <label for="phone">Phone Number</label>
-                        <input type="tel" id="phone" placeholder="(123) 456-7890" required>
+                        <input type="tel" id="phone" name="phone" placeholder="(123) 456-7890" required>
                     </div>
                 </div>
 
@@ -321,9 +321,9 @@
                 <div class="conditional-field" id="ensembleFields">
                     <div class="form-group" style="margin-bottom:0;">
                         <label for="ensembleName">Ensemble Name</label>
-                        <input type="text" id="ensembleName" placeholder="e.g. Rhythm X" style="margin-bottom: 10px;">
+                        <input type="text" id="ensembleName" name="ensemble-name" placeholder="e.g. Rhythm X" style="margin-bottom: 10px;">
                         <label for="ensembleClass">Class (e.g. PIW, PSW)</label>
-                        <input type="text" id="ensembleClass" placeholder="e.g. PIW">
+                        <input type="text" id="ensembleClass" name="ensemble-class" placeholder="e.g. PIW">
                     </div>
                 </div>
 
@@ -356,11 +356,11 @@
                 <div class="conditional-field" id="addressFieldGroup">
                     <div class="form-group" style="margin-bottom: 0;">
                         <label class="checkbox-label" id="noAddressCheckboxLabel">
-                            <input type="checkbox" id="noAddressYet">
+                            <input type="checkbox" id="noAddressYet" name="no-address-yet">
                             I do not have this yet
                         </label>
                         <label for="housingAddress" id="addressLabel">Housing Address</label>
-                        <textarea id="housingAddress" placeholder="Enter full address here..."></textarea>
+                        <textarea id="housingAddress" name="housing-address" placeholder="Enter full address here..."></textarea>
                     </div>
                 </div>
 
@@ -431,6 +431,31 @@
             });
 
             noAddressCheckbox.addEventListener('change', updateHousingLogic);
+
+            const encode = (data) => {
+                return Object.keys(data)
+                    .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
+                    .join("&");
+            };
+
+            document.getElementById('daytonForm').addEventListener('submit', (e) => {
+                e.preventDefault();
+                
+                const form = e.target;
+                const formData = new FormData(form);
+                const data = {};
+                formData.forEach((value, key) => { data[key] = value });
+
+                fetch("/", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                    body: encode(data)
+                })
+                .then(() => {
+                    window.location.href = form.getAttribute("action");
+                })
+                .catch(error => alert("Form submission failed: " + error));
+            });
 
         });
     </script>
