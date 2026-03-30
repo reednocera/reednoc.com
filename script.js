@@ -90,4 +90,21 @@ document.addEventListener('DOMContentLoaded', () => {
         heroObserver.observe(heroButton);
     }
 
+    /* --- Dayton Delivery Popup Logic --- */
+    const daytonPopup = document.getElementById('daytonPopup');
+    const closeDaytonPopup = document.getElementById('closeDaytonPopup');
+
+    if (daytonPopup && !sessionStorage.getItem('daytonPopupDismissed')) {
+        setTimeout(() => {
+            daytonPopup.classList.add('show');
+        }, 1200);
+    }
+
+    if (closeDaytonPopup) {
+        closeDaytonPopup.addEventListener('click', () => {
+            daytonPopup.classList.remove('show');
+            sessionStorage.setItem('daytonPopupDismissed', 'true');
+        });
+    }
+
 });
