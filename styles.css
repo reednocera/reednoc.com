@@ -867,3 +867,6 @@ a:focus-visible, button:focus-visible { outline: 3px solid #b9d8f1; outline-offs
 @media (prefers-reduced-motion: reduce) {
  *, *::before, *::after { animation-duration: .01ms !important; animation-delay: 0ms !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
 }
+
+.directory-consulting + .directory-book { border-top: 1px solid #526070; padding-top: 64px; }
+@media (max-width: 640px) { .directory-consulting + .directory-book { padding-top: 40px; } }
