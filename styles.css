@@ -820,3 +820,50 @@ a {
         max-width: none;
     }
 }
+/* Separate business destinations */
+.business-nav { max-width: 1260px; margin: auto; padding: 24px; display: flex; flex-wrap: wrap; gap: 16px 32px; align-items: center; border-bottom: 1px solid var(--surface-border); }
+.business-nav a { color: var(--text-secondary); font-size: 1rem; }
+.business-nav a:first-child { margin-right: auto; font-weight: 700; color: var(--text-primary); }
+.business-nav a:hover, .business-nav a[aria-current="page"] { color: white; text-decoration: underline; text-underline-offset: 6px; }
+a:focus-visible, button:focus-visible { outline: 3px solid #b9d8f1; outline-offset: 6px; }
+::selection { background: #b9d8f1; color: #0b1118; }
+.company-disclaimer { font-size: 1rem; line-height: 1.65; color: #bbc6d0; max-width: 72ch; }
+.company-disclaimer strong { color: #f8fafc; }
+.company-banner { padding-top: 24px; padding-bottom: 24px; }
+.company-banner .company-disclaimer { margin-top: 8px; }
+.site-footer .company-disclaimer { margin: 0 auto; padding: 0 24px; }
+.directory-main { max-width: 1160px; }
+.directory-intro { padding: 64px 0 48px; }
+.directory-intro h1 { font-size: clamp(2.7rem, 6vw, 4.8rem); letter-spacing: -.03em; margin-bottom: 16px; }
+.directory-intro p { color: var(--text-secondary); font-size: 1.35rem; }
+.directory-book { display: grid; grid-template-columns: 260px 1fr; gap: 64px; align-items: center; padding: 24px 0 64px; }
+.directory-cover img { display: block; width: 100%; height: auto; }
+.directory-book h2, .directory-consulting h2 { font-size: clamp(2rem, 4vw, 3.2rem); letter-spacing: -.025em; }
+.directory-summary { font-size: 1.3rem; line-height: 1.65; max-width: 55ch; margin: 20px 0 24px; color: #c5ced7; }
+.directory-link { display: inline-block; font-size: 1.1rem; font-weight: 600; text-decoration: underline; text-underline-offset: 6px; }
+.directory-link:hover { color: #b9d8f1; }
+.directory-link span { margin-left: 12px; }
+.directory-book .company-disclaimer { margin-top: 32px; }
+.directory-consulting { border-top: 1px solid #526070; padding: 64px 0; display: grid; grid-template-columns: 1.5fr 1fr; gap: 64px; align-items: end; }
+.ran-page { background: #101b22; }
+.ran-main { max-width: 1100px; }
+.ran-intro { padding: 88px 0 72px; }
+.ran-intro h1 { font-size: clamp(1.7rem, 3vw, 2.4rem); letter-spacing: -.02em; }
+.ran-lead { font-size: clamp(3rem, 7vw, 5.8rem); line-height: 1.08; font-weight: 600; letter-spacing: -.035em; margin: 28px 0; }
+.ran-contact, .company-statement { border-top: 1px solid #526070; padding: 48px 0; }
+.ran-contact h2, .company-statement h2 { font-size: 2rem; margin-bottom: 20px; }
+.ran-contact p, .company-statement p { max-width: 70ch; font-size: 1.15rem; color: #c5ced7; }
+.company-statement .company-disclaimer { margin-top: 24px; font-size: 1rem; }
+@media (max-width: 640px) {
+ .business-nav { gap: 12px 20px; padding: 20px 24px; }
+ .business-nav a:first-child { flex-basis: 100%; }
+ .directory-intro { padding: 40px 0 32px; }
+ .directory-book { grid-template-columns: 1fr; gap: 28px; padding-bottom: 40px; }
+ .directory-cover { max-width: 180px; }
+ .directory-consulting { grid-template-columns: 1fr; gap: 32px; padding: 40px 0; }
+ .ran-intro { padding: 48px 0; }
+ .ran-contact, .company-statement { padding: 32px 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+ *, *::before, *::after { animation-duration: .01ms !important; animation-delay: 0ms !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}
